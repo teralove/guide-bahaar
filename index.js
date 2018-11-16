@@ -6,21 +6,21 @@ const mapID = 9044;
 const BossID = 1000;
 const BossActions = {
 //第一阶段//////////////////////////////////////////
-	104: {msg: '前砸(闪避)'},
-	118: {msg: '跳劈(击倒)'},
+	104: {msg: 'Front -> Back'},
+	118: {msg: 'Front Jump'},
 
-	108: {msg: '丢锤(晕眩)'},
-	137: {msg: '后砸'},
+	108: {msg: 'Back Throw -> Front'},
+	137: {msg: 'Back Smash'},
 
-	131: {msg: '前砸 -> 后推'},
-	139: {msg: '转圈(全屏击倒)'},
+	131: {msg: 'Front -> Left Scratch -> Back Smash'},
+	139: {msg: 'Circle'},
 
-	121: {msg: '左脚(4连火焰)'},
-	140: {msg: '右脚(4连火焰)'},
+	121: {msg: 'Waves Left -> Get IN'},
+	140: {msg: 'Waves Right -> Get IN'},
 
-	113: {msg: '点名小心'},
-	114: {msg: '蓄力一击(击倒)'},
-	116: {msg: '甜甜圈'}
+	113: {msg: 'Throw'},
+	114: {msg: 'Eviscerate'},
+	116: {msg: 'Donuts'}
 };
 
 module.exports = function BaharrGuide(d) {
@@ -47,17 +47,26 @@ module.exports = function BaharrGuide(d) {
 	d.command.add('baha', (arg) => {
 		if (!arg) {
 			enabled = !enabled;
-			d.command.message('辅助提示 ' + (enabled ? '启用'.clr('56B4E9') : '禁用'.clr('E69F00')));
+			d.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 		} else {
 			switch (arg) {
+                case "on":
+                    enabled = true;
+                    d.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
+                    break;
+                case "off":
+                    enabled = false;
+                    d.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
+                    break;                
 				case "p":
 				case "party":
 					sendToParty = !sendToParty;
-					d.command.message('发送通知 ' + (sendToParty ? '组队'.clr('56B4E9') : '自己'.clr('E69F00')));
+					d.command.message('Send to party: ' + (sendToParty ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 					break;
 				case "proxy":
+                case "stream":
 					streamenabled = !streamenabled;
-					d.command.message('代理频道 ' + (streamenabled ? '启用'.clr('56B4E9') : '禁用'.clr('E69F00')));
+					d.command.message('Stream mode: ' + (streamenabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 					break;
 				case "debug":
 					d.command.message('模块开关: ' + `${enabled}`.clr('00FFFF'));
@@ -68,7 +77,7 @@ module.exports = function BaharrGuide(d) {
 					sendMessage('test');
 					break;
 				default :
-					d.command.message('无效的参数!'.clr('FF0000'));
+					d.command.message('Invalid argument!'.clr('FF0000'));
 					break;
 			}
 		}
@@ -89,7 +98,7 @@ module.exports = function BaharrGuide(d) {
 	function sLoadTopo(event) {
 		if (event.zone === mapID) {
 			insidemap = true;
-			d.command.message('进入副本: ' + '火神殿 '.clr('56B4E9'));
+			d.command.message('Welcome to ' + 'Bahaar\'s Sanctum '.clr('56B4E9'));
 			load();
 		} else {
 			unload();
@@ -176,7 +185,7 @@ module.exports = function BaharrGuide(d) {
 		} else {
 			d.toClient('S_CHAT', 2, {
 				channel: 21,
-				authorName: '提示',
+				authorName: 'DG-Guide',
 				message: msg
 			});
 		}
@@ -197,8 +206,8 @@ module.exports = function BaharrGuide(d) {
 			loc : curLocation,
 			w : r,
 			unk : 0,
-			ownerName : '提示',
-			message : '安全线'
+			ownerName : 'DG-Guide',
+			message : 'Safe'
 		});
 
 		curLocation.z = curLocation.z - 1000;

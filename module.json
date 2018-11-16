@@ -1,7 +1,7 @@
 {
 	"disableAutoUpdate": false,
 	"options": {
-		"niceName": "Baharr-Guide"
+		"niceName": "Bahaar-Guide"
 	},
-	"servers": ["https://raw.githubusercontent.com/zc149352394/Baharr-Guide/master/"]
+	"servers": ["https://raw.githubusercontent.com/teralove/bahaar-guide/master/"]
 }

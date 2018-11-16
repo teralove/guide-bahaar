@@ -1,9 +1,9 @@
 {
 	"files": {
 		"LICENSE": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
-		"README.md": "f7edf396f21ccb65bab4b22049d523a34e5143e442d5583039036ff6bfc1ba5e",
-		"index.js": "f85f50f27014993a459fc6571c891e970c4ccab126a9c2a2250cec783ae6734c",
-		"module.json": "9d677f690dfa06e6a2985c6d82baf9f27437945ab56a4a32ebd59bc471ccea02"
+		"README.md": "c6e7b7b2b82884fe594074045e07cdee494297d7093c817324898b4dc33e5954",
+		"index.js": "a6f71c301934a6b0a03904534d5563c52813649f2ac7ff640035e4368990fc95",
+		"module.json": "2e24e2f4ee4d3a11aedef284790ed805a489a4de8e7b64056dda7bd74231f627"
 	},
 	"defs": {
 		"C_CHAT": 1,

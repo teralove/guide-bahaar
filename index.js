@@ -127,7 +127,7 @@ module.exports = function BahaarGuide(d) {
 				curLocation = boss_CurLocation;
 				curAngle = boss_CurAngle;
 
-				if (event.stage==0 && BossActions[skillid].msg) {
+				if (event.stage==0 && BossActions[skillid] && BossActions[skillid].msg) {
 					switch (skillid) {
 						case 114:	// 捶地
 							SpawnThing(184, 260, 100);
@@ -202,7 +202,7 @@ module.exports = function BahaarGuide(d) {
 	}
 
 	function SpawnThing(degrees, radius, times) {
-        if (streamenabled) return;
+		if (streamenabled) return;
 		let r = null, rads = null, finalrad = null;
 
 		r = curAngle - Math.PI;
@@ -250,7 +250,7 @@ module.exports = function BahaarGuide(d) {
 	}
 
 	function Spawnitem(item, degrees, radius, times) {
-        if (streamenabled) return;
+		if (streamenabled) return;
 		let r = null, rads = null, finalrad = null, spawnx = null, spawny = null, pos = null;
 
 		r = curAngle - Math.PI;

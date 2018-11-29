@@ -129,21 +129,37 @@ module.exports = function BahaarGuide(d) {
 
 				if (event.stage==0 && BossActions[skillid].msg) {
 					switch (skillid) {
-						case 114:	// 捶地
+						case 114:	// Eviscerate
 							SpawnThing(184, 260, 100);
 							Spawnitem2(581, 10, 320, 4000);
 							break;
-						case 116:	// 点名后甜甜圈
+						case 116:	// Donuts
 							Spawnitem2(581, 8, 290, 6000);
 							break;
-						case 121:	// 左脚→(4连火焰)
-						case 140:	// 右脚←(4连火焰)
-							SpawnThing(90, 50, 6000);
-							Spawnitem1(581, 180, 500, 6000);
-							Spawnitem1(581, 0, 500, 6000);
-							SpawnThing(270, 100, 6000);
-							Spawnitem1(581, 180, 500, 6000);
-							Spawnitem1(581, 0, 500, 6000);
+						case 121:// Waves
+						case 122:// Waves
+						case 123:// Waves
+						case 140:// Waves
+						case 141:// Waves
+						case 142:// Waves
+							SpawnThing(90, 50, 5000);
+							Spawnitem1(581, 180, 500, 5000);
+							Spawnitem1(581, 0, 500, 5000);
+							SpawnThing(270, 100, 5000);
+							Spawnitem1(581, 180, 500, 5000);
+							Spawnitem1(581, 0, 500, 5000);
+							break;
+						case 101: //Spin Patern
+						case 120: //Right Swipe
+						case 125: //Right Scratch
+							SpawnThing(90, 50, 5000);
+							Spawnitem1(581, 180, 500, 5000);
+							Spawnitem1(581, 0, 500, 5000);
+							break;
+						case 131://Left Scrath
+							SpawnThing(270, 100, 5000);
+							Spawnitem1(581, 180, 500, 5000);
+							Spawnitem1(581, 0, 500, 5000);
 							break;
 						default :
 							break;

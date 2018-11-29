@@ -4,56 +4,9 @@ const config = require('./config.json');
 
 const mapID = 9044;
 const BossID = [1000, 2000];
-const BossActions = {
-//第一阶段//////////////////////////////////////////
-	103: {msg: 'Front (Dodge)'},
-    104: {msg: 'Front -> Back'},
-	
-    117: {msg: 'Front smash (res bait)??'},  // "Your clumbsy tricks cannot deceive me, mortal!" (Res bait?)            
-	118: {msg: 'Front Jump'},
+const {BossActions} = require('./skills');
 
-	108: {msg: 'Back Throw -> Front'},
-
-	111: {msg0: 'After??? (Slow)'},
-//	137: {msg: 'Back Smash'},
-
-	131: {msg: 'Front -> Left Scratch -> Back Smash'},
-	139: {msg: 'Circle'},
-
-	121: {msg: 'Waves Left -> Get IN'},
-	140: {msg: 'Waves Right -> Get IN'},
-
-//	113: {msg: 'Throw'},
-	114: {msg: 'Eviscerate'},
-    115: {msg: 'Eviscerate (Knock up)?'},
-    138: {msg: 'Eviscerate (Knock up)???'},  // "Your clumbsy tricks cannot deceive me, mortal!" (Res bait?)
-       
-        116: {msg: 'Donuts'},
-    
-        126: {msg: 'Front + Right scratch?'},
-//			127: {msg: 'Right scratch'},
-        311: {msg: 'Wrath + Right Swipe?'},
-        120: {msg: 'Right swipe?'},
-        
-        307: {msg: 'Starting Bombs?'},
-        301: {msg: 'Bombs?'},    
-        
-        305205: {msg: 'Ending bombs? + plague?'},        
-        
-//        309: {msg: 'Stun it 1'},
-//        310: {msg: 'Stun it 2'},    
-
-        101: {msg: 'Front bop + Right swing + Front smash + Get IN?'}, // Just the Front bop
-        //105: {msg: 'Right swing.. 1???'},
-        //107: {msg: 'Right swing.. 2???'},
-        //105: {msg: 'Front smash???'},
-
-        135: {msg: 'Front bop?'},
-
-        306: {msg: 'Rocks'},
-};
-
-module.exports = function BaharrGuide(d) {
+module.exports = function BahaarGuide(d) {
 	let	enabled = config.enabled,
 		sendToParty = config.sendToParty,
 		streamenabled = config.streamenabled,
@@ -72,10 +25,7 @@ module.exports = function BaharrGuide(d) {
 
 		uid0 = 999999999,
 		uid1 = 899999999,
-		uid2 = 799999999,
-        
-        skillid = null,
-        shining = false;
+		uid2 = 799999999;
 
 	d.command.add(['baha', 'bahaar'], (arg) => {
 		if (!arg) {
@@ -83,23 +33,22 @@ module.exports = function BaharrGuide(d) {
 			d.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 		} else {
 			switch (arg) {
-                case "on":
-                    enabled = true;
-                    d.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
-                    break;
-                case "off":
-                    enabled = false;
-                    d.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
-                    break;                
+                case "on":		
+                    enabled = true;		
+                    d.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));		
+                    break;		
+                case "off":		
+                    enabled = false;		
+                    d.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));		
+                    break;                    
 				case "p":
 				case "party":
 					sendToParty = !sendToParty;
 					d.command.message('Send to party: ' + (sendToParty ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 					break;
 				case "proxy":
-                case "stream":
 					streamenabled = !streamenabled;
-					d.command.message('Stream mode: ' + (streamenabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
+					d.command.message('Stream Mode: ' + (streamenabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 					break;
 				case "debug":
 					d.command.message('模块开关: ' + `${enabled}`.clr('00FFFF'));
@@ -140,53 +89,46 @@ module.exports = function BaharrGuide(d) {
 
 	function load() {
 		if (!hooks.length) {
-
 			hook('S_BOSS_GAGE_INFO', 3, sBossGageInfo);
 			hook('S_ACTION_STAGE', 8, sActionStage);
-            hook('S_ABNORMALITY_BEGIN', 3, sAbnormalityBegin);
+			hook('S_ABNORMALITY_BEGIN', 3, sAbnormalityBegin);
 
 			function sBossGageInfo(event) {
+				if (!enabled) return;
 				if (!insidemap) return;
+
+				let bosshp = (event.curHp / event.maxHp);
+
+				if (bosshp <= 0) {
+					whichboss = 0;
+				}
+
+				if (bosshp === 1) {
+					shining = false;
+				}
+
+				if (event.templateId === BossID[0])
+					whichboss = 1;
+				else if (event.templateId === BossID[1])
+					whichboss = 2;
+				else
+					whichboss = 0;
 			}
 
 			function sActionStage(event) {
-				if (!enabled || !insidemap || event.stage>0) return;
-                if (!BossID.includes(event.templateId)) return;
+				if (!enabled || !insidemap || whichboss===0) return;
+				if (event.templateId!=BossID[0] && event.templateId!=BossID[1]) return;
 
-				skillid = event.skill.id % 1000;
-				
+				let skillid = event.skill.id % 1000;
+
 				boss_CurLocation = event.loc;
 				boss_CurAngle = event.w;
-				
+
 				curLocation = boss_CurLocation;
 				curAngle = boss_CurAngle;
 
-				if (event.stage==1 && skillid==104) {
-					setTimeout(function() { 
-						if (shining) sendMessage('发光后砸104');
-					}, 1000)
-				}
-				if (event.stage==1 && skillid==118) {
-					setTimeout(function() { 
-						if (shining) sendMessage('发光后砸118');
-					}, 2000)
-				}
-				if (event.stage==0 && skillid==134) {
-					setTimeout(function() { 
-						if (shining) sendMessage('发光后砸134');
-					}, 1000)
-				}
-
-				if (event.stage==0 && BossActions[skillid]) {
+				if (event.stage==0 && BossActions[skillid].msg) {
 					switch (skillid) {
-						case 103:	// 前砸
-							SpawnThing(184, 400, 100);
-							Spawnitem2(581, 6, 350, 3000);
-							break;
-						case 131:	// 左前砸+后拉
-							SpawnThing(182, 340, 100);
-							Spawnitem2(581, 4, 660, 4000);
-							break;
 						case 114:	// 捶地
 							SpawnThing(184, 260, 100);
 							Spawnitem2(581, 10, 320, 4000);
@@ -194,20 +136,16 @@ module.exports = function BaharrGuide(d) {
 						case 116:	// 点名后甜甜圈
 							Spawnitem2(581, 8, 290, 6000);
 							break;
-
 						case 121:	// 左脚→(4连火焰)
 						case 140:	// 右脚←(4连火焰)
-							SpawnThing(90, 50, 100);
+							SpawnThing(90, 50, 6000);
 							Spawnitem1(581, 180, 500, 6000);
 							Spawnitem1(581, 0, 500, 6000);
-
-							SpawnThing(270, 100, 100);
+							SpawnThing(270, 100, 6000);
 							Spawnitem1(581, 180, 500, 6000);
 							Spawnitem1(581, 0, 500, 6000);
 							break;
-
 						default :
-
 							break;
 					}
 					sendMessage(BossActions[skillid].msg);
@@ -215,9 +153,15 @@ module.exports = function BaharrGuide(d) {
 			}
 
 			function sAbnormalityBegin(event) {
-				if (!enabled) return;
-				if (event.id==90442000) shining = true;
-				if (event.id==90442001) shining = false;
+				if (!enabled || !insidemap || whichboss===0) return;
+
+				if (event.id==90442000) {
+					sendMessage('Hammerhead shines!!');
+				}
+
+				if (event.id==90442001) {
+					sendMessage('Hammerhead does not shine');
+				}
 			}
 		}
 	}
@@ -274,7 +218,7 @@ module.exports = function BaharrGuide(d) {
 			w : r,
 			unk : 0,
 			ownerName : 'DG-Guide',
-			message : 'Safe'
+			message : 'Safe line'
 		});
 
 		curLocation.z = curLocation.z - 1000;
@@ -347,5 +291,4 @@ module.exports = function BaharrGuide(d) {
 			Spawnitem(item, degrees, radius, times);
 		}
 	}
-
 }

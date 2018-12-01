@@ -35,7 +35,7 @@ module.exports = {
 		119: {msg: 'Left Swipe'},
 		120: {msg: 'Right Swipe'},
 
-		307: {msg: 'STUN IT!'},//307 301
+		307: {msg: 'STUN IT!'},//WIP ???
 		309: {msg: 'STUN IT!'},
 		310: {msg: 'STUN IT!'},
 

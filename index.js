@@ -25,7 +25,9 @@ module.exports = function BahaarGuide(d) {
 
 		uid0 = 999999999,
 		uid1 = 899999999,
-		uid2 = 799999999;
+		uid2 = 799999999,
+        
+        waveTimer = undefined;
 
 	d.command.add(['baha', 'bahaar'], (arg) => {
 		if (!arg) {
@@ -120,47 +122,66 @@ module.exports = function BahaarGuide(d) {
 				if (event.templateId!=BossID[0] && event.templateId!=BossID[1]) return;
 
 				let skillid = event.skill.id % 1000;
-
-				boss_CurLocation = event.loc;
+                if (event.stage!=0 || !BossActions[skillid]) return;
+				
+                boss_CurLocation = event.loc;
 				boss_CurAngle = event.w;
 
 				curLocation = boss_CurLocation;
 				curAngle = boss_CurAngle;
 
-				if (event.stage==0 && BossActions[skillid] && BossActions[skillid].msg) {
-					switch (skillid) {
-						case 114:	// 捶地
-							SpawnThing(184, 260, 100);
-							Spawnitem2(581, 10, 320, 4000);
-							break;
-						case 116:	// 点名后甜甜圈
-							Spawnitem2(581, 8, 290, 6000);
-							break;
-						case 121:	// 左脚→(4连火焰)
-						case 140:	// 右脚←(4连火焰)
-							SpawnThing(90, 50, 6000);
-							Spawnitem1(581, 180, 500, 6000);
-							Spawnitem1(581, 0, 500, 6000);
-							SpawnThing(270, 100, 6000);
-							Spawnitem1(581, 180, 500, 6000);
-							Spawnitem1(581, 0, 500, 6000);
-							break;
-						default :
-							break;
-					}
-					sendMessage(BossActions[skillid].msg);
-				}
+                switch (skillid) {
+                    case 114:	// 捶地
+                        SpawnThing(184, 260, 100);
+                        Spawnitem2(581, 10, 320, 4000);
+                        break;
+                    case 116:	// 点名后甜甜圈
+                        Spawnitem2(581, 8, 290, 6000);
+                        break;
+                    case 121:	// 左脚→(4连火焰)
+                    case 122:
+                    case 123:
+                    case 140:	// 右脚←(4连火焰)
+                    case 141:
+                    case 142:
+                        SpawnThing(90, 50, 6000);
+                        Spawnitem1(581, 180, 500, 6000);
+                        Spawnitem1(581, 0, 500, 6000);
+                        SpawnThing(270, 100, 6000);
+                        Spawnitem1(581, 180, 500, 6000);
+                        Spawnitem1(581, 0, 500, 6000);
+                        break;
+                    default :
+                        break;
+                }
+
+                if (BossActions[skillid].msg) {
+                    sendMessage(BossActions[skillid].msg);
+                }
+                
+                if (BossActions[skillid].waveTimerMsg) {
+                    if (waveTimer) clearTimeout(waveTimer);
+                    waveTimer = setTimeout(()=> {
+                        sendMessage(BossActions[skillid].waveTimerMsg);
+                    }, 50000);
+                }
+                
+                if (BossActions[skillid].plagueTimerMsg) {
+                    setTimeout(()=> {
+                        sendMessage(BossActions[skillid].plagueTimerMsg);
+                    }, 17000);
+                }
 			}
 
 			function sAbnormalityBegin(event) {
 				if (!enabled || !insidemap || whichboss===0) return;
 
 				if (event.id==90442000) {
-					sendMessage('Hammerhead shines!!');
+					//sendMessage('Hammerhead shines!!');
 				}
 
 				if (event.id==90442001) {
-					sendMessage('Hammerhead does not shine');
+					//sendMessage('Hammerhead does not shine');
 				}
 			}
 		}

@@ -2,15 +2,14 @@ module.exports = {
 	BossActions: {
 		103: {msg: 'Front (Dodge)'},//103 104
 
-		117: {msg: 'Jump Hammer (Bait)'},
-		118: {msg: 'Jump Hammer (Tank)'},
+		117: {msg: 'Jump (Bait)'},
+		118: {msg: 'Jump (Tank)'},
 
-		131: {msg: 'Front -> Left Scratch -> Back'},//131 132 134
-		125: {msg: 'Front -> Right Scratch -> Back'},//125 126 127
+		131: {msg: 'Front -> Left Scratch'},//131 132 134
+		125: {msg: 'Front -> Right Scratch'},//125 126 127
 
 		108: {msg: 'Stun'},
 		111: {msg: 'Back'},
-		112: {msg: 'Front'},
 		137: {msg: 'Back'},
 
 		114: {msg: 'Eviscerate'},
@@ -27,8 +26,8 @@ module.exports = {
 		123: {msg: '2nd Fast Waves (Left)'},
 		
 		140: {msg: 'Normal Waves (Right)'},
-		141: {msg: '3rd Fast Waves (Right)'}, // ? WIP
-		142: {msg: '2nd Fast Waves (Right)'}, // ? WIP
+		141: {msg: '3rd Fast Waves (Right)'},
+		142: {msg: '2nd Fast Waves (Right)'},
 
 		135: {msg: 'Handle'},
 		112: {msg: 'Handle'},
@@ -36,14 +35,11 @@ module.exports = {
 		119: {msg: 'Left Swipe'},
 		120: {msg: 'Right Swipe'},
 
-		311: {msg: 'Wrath'},//311 120    311 119
-		312: {msg: 'Wrath'},//312 119    312 120
+		307: {msg: 'STUN IT!'},//307 301
+		309: {msg: 'STUN IT!'},
+		310: {msg: 'STUN IT!'},
 
-		307: {msg0: 'STUN IT!'},//307 301
-		309: {msg0: 'STUN IT!'},
-		310: {msg0: 'STUN IT!'},
-
-		305: {msg0: 'Meteors'},
-		306: {msg0: 'Meteors'},
+		305: {msg: 'Meteors'},
+		306: {msg: 'Meteors'},
 	}
 }

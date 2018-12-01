@@ -130,6 +130,8 @@ module.exports = function BahaarGuide(d) {
 				if (event.stage==0 && BossActions[skillid].msg) {
 					switch (skillid) {
 						case 114:	// Eviscerate
+						case 112: 	// Handle
+						case 135:	// Handle
 							SpawnThing(184, 260, 100);
 							Spawnitem2(581, 10, 320, 4000);
 							break;
@@ -142,6 +144,7 @@ module.exports = function BahaarGuide(d) {
 						case 140:// Waves
 						case 141:// Waves
 						case 142:// Waves
+							
 							SpawnThing(90, 50, 5000);
 							Spawnitem1(581, 180, 500, 5000);
 							Spawnitem1(581, 0, 500, 5000);
@@ -149,18 +152,29 @@ module.exports = function BahaarGuide(d) {
 							Spawnitem1(581, 180, 500, 5000);
 							Spawnitem1(581, 0, 500, 5000);
 							break;
-						case 101: //Spin Patern
-						case 120: //Right Swipe
-						case 125: //Right Scratch
+						/* WIP Untested ?????? Pls someone send help.
+						case 101:	//Spin Patern
+						case 125:	//Right Scratch
 							SpawnThing(90, 50, 5000);
 							Spawnitem1(581, 180, 500, 5000);
 							Spawnitem1(581, 0, 500, 5000);
 							break;
-						case 131://Left Scrath
+						case 131:	//Left Scrath
 							SpawnThing(270, 100, 5000);
 							Spawnitem1(581, 180, 500, 5000);
 							Spawnitem1(581, 0, 500, 5000);
 							break;
+						case 119:	//Left Swipe
+							SpawnThing(90, 50, 2000);
+							Spawnitem1(556, 180, 500, 2000);
+							Spawnitem1(556, 0, 500, 2000);
+							break;						
+						case 120:	//Right Swipe
+							SpawnThing(270, 100, 2000);
+							Spawnitem1(559, 180, 500, 2000);
+							Spawnitem1(559, 0, 500, 2000);
+							break;
+						*/
 						default :
 							break;
 					}

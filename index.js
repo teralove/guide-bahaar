@@ -133,7 +133,7 @@ module.exports = function BahaarGuide(d) {
 				
 				skillid = event.skill.id % 1000;
 
-				if (BossActions[skillid].msg) {
+				if (BossActions[skillid]) {
 					switch (skillid) {
 						case 114:	// Eviscerate
 						case 112: 	// Handle

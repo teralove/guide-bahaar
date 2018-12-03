@@ -10,7 +10,7 @@ module.exports = {
 
 		108: {msg: 'Stun'},
 		111: {msg: 'Back'},
-		137: {msg: 'Back'},
+		//137: {msg: 'Back'}, //Useless now since we are predicting that attack earlier on every Case it occure.
 
 		114: {msg: 'Eviscerate'},
 		115: {msg: 'Knockup'},//114 115
@@ -35,7 +35,6 @@ module.exports = {
 		119: {msg: 'Left Swipe'},
 		120: {msg: 'Right Swipe'},
 
-		307: {msg: 'STUN IT!'},//WIP ???
 		309: {msg: 'STUN IT!'},
 		310: {msg: 'STUN IT!'},
 

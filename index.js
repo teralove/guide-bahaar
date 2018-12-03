@@ -14,6 +14,9 @@ module.exports = function BahaarGuide(d) {
 		isTank = false,
 		insidemap = false,
 		whichboss = 0,
+		skillid = 0,
+		
+		Shine = false,
 
 		hooks = [],
 
@@ -92,6 +95,7 @@ module.exports = function BahaarGuide(d) {
 			hook('S_BOSS_GAGE_INFO', 3, sBossGageInfo);
 			hook('S_ACTION_STAGE', 8, sActionStage);
 			hook('S_ABNORMALITY_BEGIN', 3, sAbnormalityBegin);
+			hook('S_ABNORMALITY_END', 1, sAbnormalityEnd);
 
 			function sBossGageInfo(event) {
 				if (!enabled) return;
@@ -119,15 +123,17 @@ module.exports = function BahaarGuide(d) {
 				if (!enabled || !insidemap || whichboss===0) return;
 				if (event.templateId!=BossID[0] && event.templateId!=BossID[1]) return;
 
-				let skillid = event.skill.id % 1000;
-
 				boss_CurLocation = event.loc;
 				boss_CurAngle = event.w;
 
 				curLocation = boss_CurLocation;
 				curAngle = boss_CurAngle;
+				
+				if (event.stage>0) return;
+				
+				skillid = event.skill.id % 1000;
 
-				if (event.stage==0 && BossActions[skillid].msg) {
+				if (BossActions[skillid].msg) {
 					switch (skillid) {
 						case 114:	// Eviscerate
 						case 112: 	// Handle
@@ -144,7 +150,6 @@ module.exports = function BahaarGuide(d) {
 						case 140:// Waves
 						case 141:// Waves
 						case 142:// Waves
-							
 							SpawnThing(90, 50, 5000);
 							Spawnitem1(581, 180, 500, 5000);
 							Spawnitem1(581, 0, 500, 5000);
@@ -152,45 +157,56 @@ module.exports = function BahaarGuide(d) {
 							Spawnitem1(581, 180, 500, 5000);
 							Spawnitem1(581, 0, 500, 5000);
 							break;
-						/* WIP Untested ?????? Pls someone send help.
-						case 101:	//Spin Patern
-						case 125:	//Right Scratch
-							SpawnThing(90, 50, 5000);
-							Spawnitem1(581, 180, 500, 5000);
-							Spawnitem1(581, 0, 500, 5000);
-							break;
-						case 131:	//Left Scrath
-							SpawnThing(270, 100, 5000);
-							Spawnitem1(581, 180, 500, 5000);
-							Spawnitem1(581, 0, 500, 5000);
-							break;
-						case 119:	//Left Swipe
+						case 119:	//Left Swipe (Working properly but can be improved)
 							SpawnThing(90, 50, 2000);
-							Spawnitem1(556, 180, 500, 2000);
-							Spawnitem1(556, 0, 500, 2000);
+							Spawnitem1(559, 180, 500, 2000);
+							Spawnitem1(559, 0, 500, 2000);
+							break;
+						case 131:	//Left Scrath (Working properly but can be improved)
+							SpawnThing(90, 50, 2000);
+							Spawnitem1(581, 180, 500, 2000);
+							Spawnitem1(581, 0, 500, 2000);
 							break;						
-						case 120:	//Right Swipe
+						case 120:	//Right Swipe (Working properly but can be improved)
 							SpawnThing(270, 100, 2000);
 							Spawnitem1(559, 180, 500, 2000);
 							Spawnitem1(559, 0, 500, 2000);
 							break;
-						*/
+						case 101:	//Spin Patern (Working properly but can be improved)
+						case 125:	//Right Scratch (Working properly but can be improved)
+							SpawnThing(270, 100, 2000);
+							Spawnitem1(581, 180, 500, 2000);
+							Spawnitem1(581, 0, 500, 2000);
+							break;
 						default :
 							break;
 					}
 					sendMessage(BossActions[skillid].msg);
 				}
+				
+				if (skillid==104) {
+					setTimeout(function(){if (Shine) {sendMessage('Back');}}, 1300);
+				}
+				
+				if (skillid==118) {
+					setTimeout(function(){if (Shine) {sendMessage('Back');}}, 2550);
+				}
+			}
+			
+			function sAbnormalityEnd(event) {
+				if (!enabled || !insidemap || whichboss===0) return;
+
+				if (event.id==90442000) {//End Shine (Not Shine)
+					Shine = false;
+				}
 			}
 
 			function sAbnormalityBegin(event) {
 				if (!enabled || !insidemap || whichboss===0) return;
-
-				if (event.id==90442000) {
-					sendMessage('Hammerhead shines!!');
-				}
-
-				if (event.id==90442001) {
-					sendMessage('Hammerhead does not shine');
+				
+				if (event.id==90442000) {//Shine
+					Shine = true;
+					if (skillid==134) {sendMessage('Back');}
 				}
 			}
 		}

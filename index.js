@@ -136,8 +136,8 @@ module.exports = function BahaarGuide(d) {
 				if (BossActions[skillid]) {
 					switch (skillid) {
 						case 114:	// Eviscerate
-						case 112: 	// Handle
-						case 135:	// Handle
+						case 112: 	// Handle (AOE is a bit smaller but w/e)
+						case 135:	// Handle (AOE is a bit smaller but w/e)
 							SpawnThing(184, 260, 100);
 							Spawnitem2(581, 10, 320, 4000);
 							break;
@@ -156,6 +156,7 @@ module.exports = function BahaarGuide(d) {
 							SpawnThing(270, 100, 5000);
 							Spawnitem1(581, 180, 500, 5000);
 							Spawnitem1(581, 0, 500, 5000);
+							setTimeout(function(){sendMessage('Wave Soon');}, 60000); //Wave Reminder so you stop dying
 							break;
 						case 119:	//Left Swipe (Working properly but can be improved)
 							SpawnThing(90, 50, 2000);
@@ -163,9 +164,9 @@ module.exports = function BahaarGuide(d) {
 							Spawnitem1(559, 0, 500, 2000);
 							break;
 						case 131:	//Left Scrath (Working properly but can be improved)
-							SpawnThing(90, 50, 2000);
-							Spawnitem1(581, 180, 500, 2000);
-							Spawnitem1(581, 0, 500, 2000);
+							SpawnThing(90, 50, 4000);
+							Spawnitem1(581, 180, 500, 4000);
+							Spawnitem1(581, 0, 500, 4000);
 							break;						
 						case 120:	//Right Swipe (Working properly but can be improved)
 							SpawnThing(270, 100, 2000);
@@ -174,23 +175,36 @@ module.exports = function BahaarGuide(d) {
 							break;
 						case 101:	//Spin Patern (Working properly but can be improved)
 						case 125:	//Right Scratch (Working properly but can be improved)
-							SpawnThing(270, 100, 2000);
-							Spawnitem1(581, 180, 500, 2000);
-							Spawnitem1(581, 0, 500, 2000);
+							SpawnThing(270, 100, 4000);
+							Spawnitem1(581, 180, 500, 4000);
+							Spawnitem1(581, 0, 500, 4000);
 							break;
 						default :
+							SpawnThing(90, 50, 5000);
+							Spawnitem1(581, 180, 500, 5000);
+							Spawnitem1(581, 0, 500, 5000);
+							SpawnThing(270, 100, 5000);
+							Spawnitem1(581, 180, 500, 5000);
+							Spawnitem1(581, 0, 500, 5000);
 							break;
 					}
 					sendMessage(BossActions[skillid].msg);
 				}
 				
-				if (skillid==104) {
+				if (skillid==307) {//Plague Reminder for 2 IQ Healers
+					setTimeout(function(){sendMessage('Plague/Regress');}, 20600);
+				}
+				
+				if (skillid==118) {//Backhit After Jump
+					setTimeout(function(){if (Shine) {sendMessage('Back');}}, 2550);
+				}
+				
+				if (skillid==104) {//Backhit After Normal FrontSlam
 					setTimeout(function(){if (Shine) {sendMessage('Back');}}, 1300);
 				}
 				
-				if (skillid==118) {
-					setTimeout(function(){if (Shine) {sendMessage('Back');}}, 2550);
-				}
+				//EdgeCase (Edgy Bahaar-chan doing Backhit without Shiny Hammer ?!)
+				if (!Shine && skillid==137) {sendMessage('Back');};
 			}
 			
 			function sAbnormalityEnd(event) {
@@ -206,7 +220,7 @@ module.exports = function BahaarGuide(d) {
 				
 				if (event.id==90442000) {//Shine
 					Shine = true;
-					if (skillid==134) {sendMessage('Back');}
+					if (skillid==134) {sendMessage('Back');} //Backhit after Left scratch
 				}
 			}
 		}

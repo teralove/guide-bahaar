@@ -180,12 +180,6 @@ module.exports = function BahaarGuide(d) {
 							Spawnitem1(581, 0, 500, 4000);
 							break;
 						default :
-							SpawnThing(90, 50, 5000);
-							Spawnitem1(581, 180, 500, 5000);
-							Spawnitem1(581, 0, 500, 5000);
-							SpawnThing(270, 100, 5000);
-							Spawnitem1(581, 180, 500, 5000);
-							Spawnitem1(581, 0, 500, 5000);
 							break;
 					}
 					sendMessage(BossActions[skillid].msg);

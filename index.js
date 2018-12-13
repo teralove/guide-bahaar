@@ -99,7 +99,7 @@ module.exports = function BahaarGuide(d) {
 				if (!enabled) return;
 				if (!insidemap) return;
 
-				let bosshp = (event.curHp / event.maxHp);
+				let bosshp = (Number(event.curHp) / Number(event.maxHp));
 
 				if (bosshp <= 0) {
 					whichboss = 0;
@@ -133,10 +133,10 @@ module.exports = function BahaarGuide(d) {
                 switch (skillid) {
                     case 114:	// 捶地
                         SpawnThing(184, 260, 100);
-                        Spawnitem2(581, 10, 320, 4000);
+                        Spawnitem2(548, 10, 320, 4000);
                         break;
                     case 116:	// 点名后甜甜圈
-                        Spawnitem2(581, 8, 290, 6000);
+                        Spawnitem2(548, 8, 290, 6000);
                         break;
                     case 121:	// 左脚→(4连火焰)
                     case 122:
@@ -145,11 +145,11 @@ module.exports = function BahaarGuide(d) {
                     case 141:
                     case 142:
                         SpawnThing(90, 50, 6000);
-                        Spawnitem1(581, 180, 500, 6000);
-                        Spawnitem1(581, 0, 500, 6000);
+                        Spawnitem1(548, 180, 500, 6000);
+                        Spawnitem1(548, 0, 500, 6000);
                         SpawnThing(270, 100, 6000);
-                        Spawnitem1(581, 180, 500, 6000);
-                        Spawnitem1(581, 0, 500, 6000);
+                        Spawnitem1(548, 180, 500, 6000);
+                        Spawnitem1(548, 0, 500, 6000);
                         break;
                     default :
                         break;

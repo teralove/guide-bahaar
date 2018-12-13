@@ -1,7 +1,11 @@
 {
-	"disableAutoUpdate": false,
-	"options": {
-		"niceName": "Bahaar-Guide"
-	},
-	"servers": ["https://raw.githubusercontent.com/teralove/bahaar-guide/master/"]
+    "disableAutoUpdate": false,
+    "name": "bahaar-guide",
+    "author": "teralove",
+    "description": "Guide for Bahaar's Sanctum",
+    "options": {
+        "niceName": "Bahaar Guide"
+    },
+    "servers": ["https://raw.githubusercontent.com/teralove/bahaar-guide/master/"],
+    "supportUrl": "https://github.com/teralove/bahaar-guide/issues"
 }

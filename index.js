@@ -105,10 +105,6 @@ module.exports = function BahaarGuide(d) {
 					whichboss = 0;
 				}
 
-				if (bosshp === 1) {
-					shining = false;
-				}
-
 				if (event.templateId === BossID[0])
 					whichboss = 1;
 				else if (event.templateId === BossID[1])

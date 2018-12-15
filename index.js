@@ -53,11 +53,11 @@ module.exports = function BahaarGuide(d) {
 					d.command.message('Stream Mode: ' + (streamenabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 					break;
 				case "debug":
-					d.command.message('模块开关: ' + `${enabled}`.clr('00FFFF'));
-					d.command.message('副本地图: ' + insidemap);
-					d.command.message('副本首领: ' + whichboss);
-					d.command.message('发送通知 ' + (sendToParty ? '真实组队'.clr('56B4E9') : '仅自己见'.clr('E69F00')));
-					d.command.message('职业分类 ' + (isTank ? '坦克'.clr('00FFFF') : '打手'.clr('FF0000')));
+					d.command.message('enabled: ' + `${enabled}`.clr('00FFFF'));
+					d.command.message('insidemap: ' + insidemap);
+					d.command.message('whichboss: ' + whichboss);
+					d.command.message('sendtoparty ' + (sendToParty ? 'true'.clr('56B4E9') : 'false'.clr('E69F00')));
+					d.command.message('istank ' + (isTank ? 'true'.clr('00FFFF') : 'false'.clr('FF0000')));
 					sendMessage('test');
 					break;
 				default :
@@ -67,7 +67,7 @@ module.exports = function BahaarGuide(d) {
 		}
 	});
 
-	d.hook('S_LOGIN', 10, sLogin)
+	d.hook('S_LOGIN', 12, sLogin)
 	d.hook('S_LOAD_TOPO', 3, sLoadTopo);
 
 	function sLogin(event) {
@@ -92,7 +92,7 @@ module.exports = function BahaarGuide(d) {
 	function load() {
 		if (!hooks.length) {
 			hook('S_BOSS_GAGE_INFO', 3, sBossGageInfo);
-			hook('S_ACTION_STAGE', 8, sActionStage);
+			hook('S_ACTION_STAGE', 9, sActionStage);
 			hook('S_ABNORMALITY_BEGIN', 3, sAbnormalityBegin);
 
 			function sBossGageInfo(event) {
@@ -127,17 +127,17 @@ module.exports = function BahaarGuide(d) {
 				curAngle = boss_CurAngle;
 
                 switch (skillid) {
-                    case 114:	// 捶地
+                    case 114:
                         SpawnThing(184, 260, 100);
                         Spawnitem2(548, 10, 320, 4000);
                         break;
-                    case 116:	// 点名后甜甜圈
+                    case 116:
                         Spawnitem2(548, 8, 290, 6000);
                         break;
-                    case 121:	// 左脚→(4连火焰)
+                    case 121:
                     case 122:
                     case 123:
-                    case 140:	// 右脚←(4连火焰)
+                    case 140:
                     case 141:
                     case 142:
                         SpawnThing(90, 50, 6000);

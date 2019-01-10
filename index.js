@@ -139,7 +139,7 @@ module.exports = function BaharrGuide(mod) {
 					}
 				} */
 				
-				if (event.templateId == 2500)
+				if (event.templateId == 2500) {
 					curLocation = event.loc;
 					curAngle = event.w;
 					

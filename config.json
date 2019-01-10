@@ -1,5 +1,6 @@
 {
-	"enabled": true,
-	"sendToParty": false,
-	"streamenabled": false
+    "enabled": true,
+    "sendAlerts": false,
+    "sendNotices": true,
+    "streamMode": false
 }

@@ -1,45 +1,39 @@
 module.exports = {
-	BossActions: {
+	BossActionsTips : {
+		101: {msg: '4 Hit combo'},//101 105 107 139
 		103: {msg: 'Front (Dodge)'},//103 104
-
-		117: {msg: 'Jump (Bait)'},
-		118: {msg: 'Jump (Tank)'},
-
-		131: {msg: 'Front -> Left Scratch -> Back'},//131 132 134
-		125: {msg: 'Front -> Right Scratch -> Back'},//125 126 127
-
+//		105: {msg: '4 Hit (2)'},
+//		107: {msg: '4 Hit (3)'},	
 		108: {msg: 'Back Throw -> Front'},
-		111: {msg: 'Big hammer back'},
-		137: {msg: 'Hammer back '},
-
+		111: {msg: 'Back'}, //Big hammer back
+		112: {msg: 'Handle'},
+		113: {msg: 'Throw'},
 		114: {msg: 'Front Slam'},
 		115: {msg: 'Knockup'},//114 115
-		138: {msg: 'Knockback (Bait)'},//113 138
-
 		116: {msg: 'Donuts'},
-
-		139: {msg: 'Knockback!!'},//108 110 139    118 139    101 105 107 139
-        
-		121: {msg: 'Waves (Left)',  waveTimerMsg: 'Waves soon..'},//100%-60%        
-		122: {msg: 'Waves (Left).',  waveTimerMsg: 'Waves soon..'},//"I am the Fire Lord"
-		123: {msg: 'Waves (Left)..',  waveTimerMsg: 'Waves soon..'},//"Scream you weaklings..."
-        
-		140: {msg: 'Waves (Right)',   waveTimerMsg: 'Waves soon..'},//100%-60%
-		141: {msg: 'Waves (Right)?', waveTimerMsg: 'Waves soon..'},//"I am the Fire Lord"
-		142: {msg: 'Waves (Right)??', waveTimerMsg: 'Waves soon..'},//"Scream you weaklings..."
-
-		135: {msg: 'Handle'},
-		112: {msg: 'Handle !'},
-
-		311: {msg: 'Wrath'},//311 120    311 119
-		312: {msg: 'Wrath !'},//312 119    312 120
-        
+		117: {msg: 'Jump (Bait)'},
+		118: {msg: 'Jump (Tank)'},
 		119: {msg: 'Left swipe'},
 		120: {msg: 'Right swipe'},
-
-		307: {msg: 'Bombs', plagueTimerMsg: 'Plague/Regress inc'},
-
-		305: {msg0: 'Meteors'},
-		306: {msg0: 'Meteors !'},
+		121: {msg: 'Waves (Left)'},
+		122: {msg: 'Waves (Left) 3rd fast'},
+		123: {msg: 'Waves (Left) 2nd fast'},
+		125: {msg: 'Front -> Right Scratch'},//125 126 127
+		131: {msg: 'Front -> Left Scratch'},//131 132 134
+		135: {msg: 'Handle'},
+//		137: {msg: 'Hammer back '},
+		138: {msg: 'Knockup (Bait)'},//113 138		
+		139: {msg: 'Dodge!!'}, //108 110 139    118 139    101 105 107 139    (Knockdown)
+		140: {msg: 'Waves (Right)'},
+		141: {msg: 'Waves (Right) 3rd fast'},
+		142: {msg: 'Waves (Right) 2nd fast'},
+		305: {msg: 'Meteors!!'},
+		306: {msg: 'Meteors!!'},
+//		307: {msg: 'Bombs'},//307 301
+//		308: {msg: 'Stun (1)?'},
+//		309: {msg: 'Stun (2)'},
+//		310: {msg: 'Stun (3)'},
+		311: {msg: 'Wrath'},//311 120    311 119
+		312: {msg: 'Wrath!'},//312 119    312 120
 	}
 }

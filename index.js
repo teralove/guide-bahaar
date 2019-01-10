@@ -10,8 +10,8 @@ module.exports = function BaharrGuide(mod) {
     const {BossActionsTips} = require('./skills');
 
 	let	enabled = true,
-		sendToAlert = false,
-		sendToNotice = true,
+		sendAlerts = false,
+		sendNotices = true,
 		streamMode = false,
 		
 		isTank = true,
@@ -44,38 +44,38 @@ module.exports = function BaharrGuide(mod) {
 	mod.command.add(['巴哈', 'baha', 'bahaar'], (arg) => {
 		if (!arg) {
 			enabled = !enabled;
-			sendMessage((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
+			mod.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 		} else {
 			switch (arg) {
                 case "on":
                     enabled = true;
-                    sendMessage((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
+                    mod.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
                     break;
                 case "off":
                     enabled = false;
-                    sendMessage((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
+                    mod.command.message((enabled ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
                     break;
 				case "a":
 				case "alert":
 				case "警告":
-					sendToAlert = !sendToAlert;
-					sendMessage('Alerts: ' + (sendToAlert ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
+					sendAlerts = !sendAlerts;
+					mod.command.message('Alerts: ' + (sendAlerts ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 					break;
 				case "n":
 				case "notice":
 				case "队长":
-					sendToNotice = !sendToNotice;
-					sendMessage('Notices: ' + (sendToNotice ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
+					sendNotices = !sendNotices;
+					mod.command.message('Notices: ' + (sendNotices ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 					break;
 				case "p":
 				case "proxy":
 				case "stream":
 				case "代理":
 					streamMode = !streamMode;
-					sendMessage('Stream mode: ' + (streamMode ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
+					mod.command.message('Stream mode: ' + (streamMode ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')));
 					break;
 				default :
-					sendMessage('Invalid argument!'.clr('FF0000'));
+					mod.command.message('Invalid argument!'.clr('FF0000'));
 					break;
 			}
 		}
@@ -250,6 +250,7 @@ module.exports = function BaharrGuide(mod) {
 			}
 			
 			function sAbnormalityBegin(event) {
+                if (!enabled) return;
 				if (Number(event.target) != Number(bossId)) return;
 				
 				//if (event.id == 90442304) sendMessage('Stuns');
@@ -277,7 +278,7 @@ module.exports = function BaharrGuide(mod) {
 	}
 		
     function sendMessage(msg) {
-		if (sendToAlert && !streamMode) {
+		if (sendAlerts && !streamMode) {
 			mod.send('S_DUNGEON_EVENT_MESSAGE', 2, {
 				type: 43,
 				chat: 0,
@@ -286,7 +287,7 @@ module.exports = function BaharrGuide(mod) {
 			});
 		}
         
-		if (sendToNotice && ! streamMode) {
+		if (sendNotices && !streamMode) {
 			mod.send('S_CHAT', 2, {
 				channel: 21,
 				authorName: 'DG-Guide',

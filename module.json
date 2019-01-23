@@ -1,11 +1,15 @@
 {
     "disableAutoUpdate": false,
     "name": "bahaar-guide",
-    "author": "teralove",
+    "author": "teralove, ZC",
     "description": "Guide for Bahaar's Sanctum",
+    "version": "1/23/2019",  
     "options": {
-        "niceName": "Bahaar Guide"
+        "niceName": "Bahaar Guide",
+        "settingsVersion": 1,
+        "settingsFile": "config.json",
+        "settingsMigrator": "settings_migrator.js"    
     },
-    "servers": ["https://raw.githubusercontent.com/teralove/bahaar-guide/master/"],
-    "supportUrl": "https://github.com/teralove/bahaar-guide/issues"
+    "servers": ["https://raw.githubusercontent.com/teralove/guide-bahaar/master/"],
+    "supportUrl": "https://github.com/teralove/guide-bahaar/issues"
 }

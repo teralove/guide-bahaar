@@ -1,5 +1,8 @@
 {
-	"enabled": true,
-	"sendToParty": false,
-	"streamenabled": false
+    "version": 1,
+    "data": {
+        "enabled": true,
+        "sendNotices": true,
+        "showItems": true
+    }
 }

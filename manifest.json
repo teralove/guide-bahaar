@@ -1,26 +1,28 @@
 {
-	"files": {
+    "files": {
         "config.json": {
             "overwrite": false,
-            "hash": "bcda6d61ccad8bc653ac35bade341ffd949471f4b00cd6aadf08006b311b7067"
+            "hash": "4afc2fb2c1644c13872f46b1a4b892395609108e2fa94db533a57bfa5eeba12e"
         },
-        "index.js": "e47c4d30f3af178ee63077c1aef0c59537cb55f077d66695a67f0345a1647313",
-        "skills.js": "ccb3729448220edfea618ea3b3592f2341a8fe6853fedd0ef2ceaa3705e1ad2e"
-	},
-	"defs": {
-		"C_CHAT": 1,
-		"S_ACTION_STAGE": 8,
+        "index.js": "4f361e2521d9074f4b0aefd0b74b8b492170a510854b8cae4faf3ddcacfadd8f",
+        "skills.js": "ccb3729448220edfea618ea3b3592f2341a8fe6853fedd0ef2ceaa3705e1ad2e",
+        "module.json": "5b8e4e2db381325b3d5db530ab05af1a2c9db4c6ac3cb0e476148c477a139620",
+		"settings_migrator.js": "ebf3fae217c6960d627876418497277716189660655ede4552beefb2807771d6"
+    },
+    "defs": {
+        "C_CHAT": 1,
+        "S_ACTION_STAGE": 8,
         "S_ABNORMALITY_BEGIN": 3,
         "S_DUNGEON_EVENT_MESSAGE": 2,
-		"S_BOSS_GAGE_INFO": 3,
-		"S_CHAT": 2,
-		"S_DESPAWN_BUILD_OBJECT": 2,
-		"S_DESPAWN_COLLECTION": 2,
-		"S_DESPAWN_DROPITEM": 4,
-		"S_LOAD_TOPO": 3,
-		"S_LOGIN": 12,
-		"S_SPAWN_BUILD_OBJECT": 2,
-		"S_SPAWN_COLLECTION": 4,
-		"S_SPAWN_DROPITEM": 6
-	}
+        "S_BOSS_GAGE_INFO": 3,
+        "S_CHAT": 2,
+        "S_DESPAWN_BUILD_OBJECT": 2,
+        "S_DESPAWN_COLLECTION": 2,
+        "S_DESPAWN_DROPITEM": 4,
+        "S_LOAD_TOPO": 3,
+        "S_LOGIN": 12,
+        "S_SPAWN_BUILD_OBJECT": 2,
+        "S_SPAWN_COLLECTION": 4,
+        "S_SPAWN_DROPITEM": 6
+    }
 }

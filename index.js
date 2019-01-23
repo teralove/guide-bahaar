@@ -110,6 +110,7 @@ module.exports = function BaharrGuide(mod) {
 			hook('S_ABNORMALITY_BEGIN', 3, sAbnormalityBegin);
 			
 			function sBossGageInfo(event) {
+
 				if (!mod.settings.enabled || !insidemap || !checkBoss) return;
 				
 				if (event.templateId === TemplateID[0]) {
@@ -124,6 +125,7 @@ module.exports = function BaharrGuide(mod) {
 			}
 			
 			function sActionStage(event) {
+
 				if (!mod.settings.enabled || !insidemap) return;
 				
 				if (event.stage > 0) return;
@@ -245,7 +247,9 @@ module.exports = function BaharrGuide(mod) {
 			}
 			
 			function sAbnormalityBegin(event) {
+
                 if (!mod.settings.enabled) return;
+
 				if (Number(event.target) != Number(bossId)) return;
 				
 				//if (event.id == 90442304) sendMessage('Stuns');
@@ -272,6 +276,7 @@ module.exports = function BaharrGuide(mod) {
 		}
 	}
 		
+
     function sendMessage(msg) {        
 		if (mod.settings.sendNotices) {
 			mod.send('S_CHAT', 2, {
@@ -304,7 +309,9 @@ module.exports = function BaharrGuide(mod) {
 	}
 	
 	function SpawnThing(hide, degrees, radius, times) {
+
         if (!mod.settings.showItems) return;
+
 		let r = null, rads = null, finalrad = null;
 		
 		r = curAngle - Math.PI;
@@ -352,7 +359,9 @@ module.exports = function BaharrGuide(mod) {
 	}
 	
 	function Spawnitem(item, degrees, radius, times) {
+
         if (!mod.settings.showItems) return;
+
 		let r = null, rads = null, finalrad = null, spawnx = null, spawny = null, pos = null;
 		
 		r = curAngle - Math.PI;
